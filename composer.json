@@ -2,7 +2,8 @@
     "name": "ahnjkdan2/laratables",
     "description": "Ajax support of DataTables for Laravel 5.5+",
     "require": {
-        "freshbitsweb/laratables":"dev-custom"
+        "php": ">=7.0",
+        "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
