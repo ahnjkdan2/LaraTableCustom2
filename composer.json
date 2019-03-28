@@ -1,0 +1,47 @@
+{
+    "name": "ahnjkdan2/laratables",
+    "description": "Ajax support of DataTables for Laravel 5.5+",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ahnjkdan2/LaraTableCustom"
+        }
+    ],
+    "require": {
+        "freshbitsweb/laratables":"dev-custom",
+    },
+    "require-dev": {
+        "orchestra/testbench": "~3.0",
+        "phpunit/phpunit": "^7",
+        "mockery/mockery": "^1.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gaurav Makhecha",
+            "email": "info@freshbits.in"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Freshbitsweb\\Laratables\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Freshbitsweb\\Laratables\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Freshbitsweb\\Laratables\\LaratablesServiceProvider"
+            ]
+        }
+    }
+}
