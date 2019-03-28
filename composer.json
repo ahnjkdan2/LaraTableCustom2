@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "freshbitsweb/laratables":"dev-custom",
+        "freshbitsweb/laratables":"dev-custom"
     },
     "require-dev": {
         "orchestra/testbench": "~3.0",
