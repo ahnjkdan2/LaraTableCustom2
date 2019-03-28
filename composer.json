@@ -1,12 +1,6 @@
 {
     "name": "ahnjkdan2/laratables",
     "description": "Ajax support of DataTables for Laravel 5.5+",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/ahnjkdan2/LaraTableCustom2"
-        }
-    ],
     "require": {
         "freshbitsweb/laratables":"dev-custom"
     },
