@@ -1,0 +1,85 @@
+<?php
+
+namespace Freshbitsweb\Laratables\Tests;
+
+use Illuminate\Support\Str;
+
+class SearchTest extends TestCase
+{
+    /** @test */
+    public function it_applies_the_search_as_per_the_custom_method()
+    {
+        $randomString = Str::random(20);
+
+        $users = $this->createUsers(
+            $count = 1,
+            $parameters = [
+                'remember_token' => $randomString,
+            ]
+        );
+
+        $response = $this->json(
+            'GET',
+            '/datatables-custom-search',
+            $this->getDatatablesUrlParameters($searchValue = $randomString)
+        );
+
+        $response->assertJson([
+            'recordsTotal' => 1,
+            'data' => [[
+                '0' => 1,
+                '1' => $users->first()->name,
+                '2' => $users->first()->email,
+                '3' => '<a>1</a>',
+                '4' => $users->first()->country->name,
+            ]],
+        ]);
+    }
+
+    /** @test */
+    public function it_applies_the_search_to_searchable_columns()
+    {
+        $randomString = Str::random(20);
+
+        $users = $this->createUsers(
+            $count = 1,
+            $parameters = [
+                'remember_token' => $randomString,
+            ]
+        );
+
+        $response = $this->json(
+            'GET',
+            '/datatables-searchable-columns',
+            $this->getDatatablesUrlParameters($searchValue = $randomString)
+        );
+
+        $response->assertJson([
+            'recordsTotal' => 1,
+            'data' => [[
+                '0' => 1,
+                '1' => $users->first()->name,
+                '2' => $users->first()->email,
+                '3' => '<a>1</a>',
+            ]],
+        ]);
+    }
+
+    /** @test */
+    public function it_skips_non_searchable_columns_during_the_search()
+    {
+        $users = $this->createUsers();
+
+        $response = $this->json(
+            'GET',
+            '/datatables-non-searchable-columns',
+            $this->getDatatablesUrlParameters($searchValue = $users->first()->name)
+        );
+
+        $response->assertJson([
+            'recordsTotal' => 1,
+            'recordsFiltered' => 0,
+            'data' => [],
+        ]);
+    }
+}
